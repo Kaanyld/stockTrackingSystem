@@ -1,0 +1,58 @@
+﻿@model stockTrackingSystem.Models.Products
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Add", "Products", FormMethod.Post, new { enctype = "multipart/Form-data" }))
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input type="text" name="Name" class="form-control" />
+
+                            </div>
+                        
+                        <div class="form-group">
+                            <label>Statement</label>
+                            <input type="text" name="Statement" class="form-control" />
+
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Image", new { @class = "control-label col-md-2" })
+                            <input type="file" name="File" class="form-control"/>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <input type="text" name="Stock" class="form-control"/>
+
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input type="text" name="Price" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label("Popular", new { @class = "control-label col-md-2" })
+                            @Html.EditorFor(x => x.Popular)
+                        </div>
+
+                        <div class="form-group">
+                            <label>Categories</label>
+                           @Html.DropDownListFor(x => x.CategoriesId,(List<SelectListItem>)ViewBag.ctgr, new{@class="form-control"})
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add Product</button>
+                        <a href="/Products/Index">Product List</a>
+
+                    </div>
+
+                </div>
+             </div>
+            }
+
+
+

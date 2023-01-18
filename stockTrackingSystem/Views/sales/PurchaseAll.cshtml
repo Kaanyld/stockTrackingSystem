@@ -1,0 +1,63 @@
+﻿@using stockTrackingSystem.Models
+@model List<ShoppingCard>
+@{
+    ViewBag.Title = "PurchaseAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PurchaseAll</h2>
+
+<div class="container">
+    <div class="container">
+        <h2>Hello @Session["Name"] @Session["LastName"]. Welcome to Purchase Page.</h2>
+    </div>
+
+    <div class="container">
+        @using (Html.BeginForm("AllPurchase_2", "Sales", FormMethod.Post, new { @class = "container" }))
+        {
+            foreach (var item in Model)
+            {
+                <div class="form-group">
+                    <h5>Id: @Html.DisplayFor(x => item.Id)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Product Name: @Html.DisplayFor(x => item.Products.Name)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Piece: @Html.DisplayFor(x => item.Piece)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Price: @Html.DisplayFor(x => item.Price)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Image: <img src="~/Content/Images/@item.Products.Image" width="50" height="50" /></h5>
+                </div>
+
+            }
+            <p style="color:red;text-align:center; float:left; margin-right:10px">@ViewBag.Amount</p>
+
+            <div class="container">
+                @*<div class="form-group" style="float:left">
+            <button class="btn btn-success">Confirm</button>
+            <a href="~/ShoppingCard/Index" class="btn btn-danger">Cancel</a>
+
+            </div>*@
+                <div class="form-group" style="float:left">
+                    <button class="btn btn-success">Purchase All</button>
+                   
+                </div>
+
+                <div style="float:left; margin-left:10px">
+                    <a href="~/ShoppingCard/Index" class="btn btn-danger">Cancel</a>
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

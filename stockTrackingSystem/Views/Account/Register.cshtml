@@ -1,0 +1,53 @@
+﻿@model stockTrackingSystem.Models.UserInfo
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="~/Login_v4/css/main.css">
+
+<body style="width: 100%; height: auto; background-repeat: round; background-image: url('../../Login_v4/images/bg-01.jpg');">
+    <div class="container">
+        <br />
+        <h2>Register</h2>
+        <div class="tox-form-group col-md-3" container>
+            <form method="post">
+
+                <label>Name: </label>
+                <input type="text" name="Name" class="form-control" required />
+
+
+
+                <label>Last Name: </label>
+                <input type="text" name="LastName" class="form-control" required />
+
+
+                <label>Email: </label>
+                <input type="text" name="eMail" class="form-control" required />
+
+
+                <label>UserName: </label>
+                <input type="text" name="UserName" class="form-control" required />
+
+
+                <label>Password: </label>
+                <input type="text" name="Password" class="form-control" required />
+
+                <label>Password Again: </label>
+                <input type="text" name="PasswordAgain" class="form-control" required />
+
+                <br />
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn" type="submit">
+                            Register
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+</body>

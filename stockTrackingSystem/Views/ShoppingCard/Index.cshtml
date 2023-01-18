@@ -1,0 +1,114 @@
+﻿@model List<stockTrackingSystem.Models.ShoppingCard>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Session["Name"]</h2>
+<h2>My Shopping Card</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Product Information</th>
+            <th>Piece</th>
+            <th>Price</th>
+            <th>Date</th>
+            <th>Image</th>
+            <th>Delete</th>
+            <th>Purchase</th>
+        </tr>
+    </thead>
+    <tody>
+        @foreach(var item in Model)
+         {
+            <tr>
+                <td>@item.Products.Name</td>
+                <td>
+                    <div>
+                        @Html.ActionLink("-", "decrease", new { id = item.Id }, new { @class = "btn btn-info btn-sm decrease" })
+                    </div>
+                    <div>
+                        @Html.TextBoxFor(x => item.Piece, new { @class = "txt", data_id = item.Id })
+                    </div>
+                    <div>
+                        @Html.ActionLink("+", "increase", new { id = item.Id }, new { @class = "btn btn-info btn-sm increase" })
+                    </div>
+                </td>
+   
+                <td>@item.Products.Price</td>
+                <td>@Convert.ToDateTime(item.Date).ToString("MM/dd/yyyy")</td>
+                <td><img src="~/Content/Images/@item.Products.Image" width="90" height="90" /></td>
+                    
+                    @if (User.IsInRole("User"))
+                        {
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Do you want to delete?')" })</td>
+                        <td><a href="/Sales/Purchase/@item.Id" class="btn btn-success">Purchase</a></td>
+    
+                        }
+            </tr>
+         }
+    </tody>
+</table>
+<div class="container">
+    @ViewBag.Amount
+</div>
+<br/>
+
+<div class="form-group">
+    <a href="/Sales/PurchaseAll" class="btn btn-success form-control">Purchase All</a>
+</div>
+
+
+<div class="form-group">
+    <a href="/ShoppingCard/DeleteAll" class="btn btn-danger form-control">Delete All</a>
+</div>
+
+<style>
+    .txt
+    {
+        line-height:18px;
+        width:50px!important;
+        height:32px;
+        font-size:14px;
+        text-align:center;
+        border:solid 1px #ccc;
+        margin-left:23px;
+    }
+
+    .increase
+    {
+        display:block;
+        cursor:pointer;
+        border: solid 1px #ccc;
+        position:absolute;
+        margin-top:-32px;
+        margin-left:75px;
+    }
+
+    .decrease 
+    {
+        display: block;
+        cursor: pointer;
+        border: solid 1px #ccc;
+        position: absolute;
+        margin-left:-5px;    
+
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('.txt').on('change', function () {
+            var x_quantity = $(this).val();
+            var shoppingCardId = $(this).attr('data_id');
+            $.ajax({
+                url: '/ShoppingCard/writePiece',
+                data: { id: shoppingCardId, quantity: x_quantity },
+                success: function(res) {
+                    document.location.reload();
+                }
+            });
+        });
+    });
+</script>
+

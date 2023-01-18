@@ -1,0 +1,60 @@
+﻿@model stockTrackingSystem.Models.Products
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="Name" class="form-control" value="@Model.Name" />
+                </div>
+
+                <div class="form-group">
+                    <label>Statement</label>
+                    <input type="text" name="Statement" class="form-control" value="@Model.Statement" />
+                </div>
+
+                <div class="form-group">
+                    <label>Previous Image</label>
+                    <input src="~/Content/Images/@Model.Image" width="90" height="90" />
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Image", new { @class = "control-label col-md-2" })
+                    <input type="file" name="File" />
+                </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="text" name="Price" class="form-control" value="@Model.Price" />
+                </div>
+
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input type="text" name="Stock" class="form-control" value="@Model.Stock" />
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Popular", new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(x => x.Popular)
+                </div>
+
+                <div class="form-group">
+                    <label>Categories</label>
+                    @Html.DropDownListFor(x => x.CategoriesId, (List<SelectListItem>)ViewBag.ctgr, new { @class = "form-control" })
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="/Products/Index">Product List</a>
+            </form>
+            
+
+        </div>
+
+    </div>
+</div>

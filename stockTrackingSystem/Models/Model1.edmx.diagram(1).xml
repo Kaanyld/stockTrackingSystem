@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2adfbd91a8cc4a3dba3e1be770acc3ab" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="TRACKING_SYSTEMModel.Categories" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRACKING_SYSTEMModel.Products" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRACKING_SYSTEMModel.Sales" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRACKING_SYSTEMModel.ShoppingCard" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRACKING_SYSTEMModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TRACKING_SYSTEMModel.UserInfo" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="TRACKING_SYSTEMModel.FK_Products_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="TRACKING_SYSTEMModel.FK_Sales_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="TRACKING_SYSTEMModel.FK_ShoppingCard_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="TRACKING_SYSTEMModel.FK_Sales_UserInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="TRACKING_SYSTEMModel.FK_ShoppingCart_UserInfo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

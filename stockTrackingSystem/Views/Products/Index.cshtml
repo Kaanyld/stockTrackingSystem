@@ -1,0 +1,96 @@
+﻿@using stockTrackingSystem.Models
+@model List<Products>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+
+    <div style="width:25%; float:left; margin-left:-15px;">
+        @Html.TextBox("search", null, new { @class = "form-control", @placeholder = "Search for product name or description" })
+        </div>
+        <div style="float: left; margin-left:5px; ">
+            <input type="submit" name="btn" value="Search" class="btn btn-info" />
+        </div>
+
+
+        @*<div style="float:left">
+            <input type="submit" name="btn" value="Search" class="btn btn-info" />
+        </div>*@
+
+
+
+        }
+    </div>
+<br/>
+
+<a href="/Products/Add" class="btn btn-primary">Add Product</a>
+    <br/>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Statement</th>
+        <th>Popular</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Categories</th>
+
+        @if (User.IsInRole("Admin"))
+        {
+            <th>Edit</th>
+            <th>Delete</th>
+        }
+
+        @if (User.IsInRole("User"))
+        {
+            <th>Add to Shopping Cart</th>
+        }
+
+    </tr>
+    @foreach(var item in Model)
+            {
+               <tr>
+                   <td><img src="~/Content/Images/@item.Image" width="80" height="80" /></td>
+                   <td>@item.Name</td>
+                   <td>@item.Statement</td>
+
+                   @*<td>
+            @item.Popular
+            @if (item.Popular == true)
+            {
+                <label class="btn btn-success">Yes</label>
+            }
+            else
+            {
+                <label class="btn btn-success">No</label>
+            }
+
+        </td>*@
+
+
+                   <td>@item.Popular</td>
+                   <td>@item.Price</td>
+                   <td>@item.Stock</td>
+                   <td>@item.Categories.Name</td>
+                   @if (User.IsInRole("Admin"))
+                   {
+                       <td><a href="/Products/Update/@item.Id" class="btn btn-warning">Edit</a></td>
+                       <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Do you want to delete?')" })</td>
+
+                   }
+                   @if (User.IsInRole("User"))
+                   {
+
+                       <td><a href="/ShoppingCard/AddShoppingCard/@item.Id" class="btn btn-success">Add Shopping Card</a></td>
+                   }
+               </tr>
+
+            }
+
+</table>
+

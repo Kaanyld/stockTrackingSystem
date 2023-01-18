@@ -1,0 +1,35 @@
+﻿@model stockTrackingSystem.Models.Categories
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Add", "Category", FormMethod.Post, new { @class = "form-control" }))
+{
+    <br />
+    <br />
+
+    <div class="container">
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <tr>
+                    <td><label>Category Name</label></td>
+                    <td>@Html.TextBoxFor(x => x.Name, new { @class = "form-control" })</td>
+                </tr>
+                <br />
+                <tr>
+                    <td><label>Statement</label></td>
+                    <td>@Html.TextBoxFor(x => x.Statement, new { @class = "form-control" })</td>
+                </tr>
+                <br/>
+                <button type="submit" class="btn btn-default">Add</button>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+}

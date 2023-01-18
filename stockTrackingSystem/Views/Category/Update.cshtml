@@ -1,0 +1,31 @@
+﻿@model stockTrackingSystem.Models.Categories  
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+@using (Html.BeginForm("Update", "Category", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form class="form-group" method="post">
+                    <div style="margin-bottom:15px;">
+                        @Html.LabelFor(x => x.Name)
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                    </div>
+
+                    <div style="margin-bottom:15px;">
+                        @Html.LabelFor(x => x.Statement)
+                        @Html.TextBoxFor(x => x.Statement, new { @class = "form-control" })
+                    </div>
+
+                    <button class="btn btn-success">Update</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+

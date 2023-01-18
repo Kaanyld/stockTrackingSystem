@@ -1,0 +1,39 @@
+﻿@using stockTrackingSystem.Models
+@model List<Categories>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<a href="/Category/Add" class="btn btn-primary">Add</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Name</th>
+        <th>Statement</th>
+        @if (User.IsInRole("Admin"))
+        {
+            <th>Edit</th>
+            <th>Delete</th>
+        }
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Name</td>
+    <td>@item.Statement</td>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Do you want to delete?')" })</td>
+        <td><a href="/Category/Update/@item.Id" class="btn btn-warning">Edit</a></td>
+
+    }
+
+</tr>
+    }
+</table>
+

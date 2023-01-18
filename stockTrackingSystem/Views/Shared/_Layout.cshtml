@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .navbar {
+            font-family: Courier New, Courier, monospace;
+            font-weight: 400;
+            font-size: 1em;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse" >
+        <div class="container-fluid navbar-dark">
+            <div class="navbar-header">
+                <a class="navbar-brand navbar-light" href="/Home/Index" style="color:white"><strong>Product Stock Tracking</strong></a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                @*<li class="active"><a href="#">Home</a></li>*@
+
+                @*<li><a href="/User/Update" style="color:whitesmoke">@Session["Name"] @Session["Last Name"]</a></li>*@
+
+                <li><a href="/Category/Index" style="color:white">Categories</a></li>
+                <li><a href="/Products/Index" style="color:white">Products</a></li>
+                <li><a href="/Account/Update" style="color:white">@Session["Name"] @Session["LastName"]</a></li>
+
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <li><a href="/AllSales/Index" style="color:white">All Sales</a></li>
+                    <li><a href="/User/Index" style="color:white">User</a></li>
+                    <li><a href="/Products/CriticalStock" style="color:white">Critical Stock @Html.Action("StockCount", "Products")</a></li>
+                    <li><a href="/Products/StockGraphic" style="color:white">Stock Graphic</a></li>
+                    <li><a href="/Statistics/Index" style="color:white">Statistics</a></li>
+
+                }
+
+                @if (User.IsInRole("User"))
+                {
+                    <li><a href="/Sales/Index" style="color:white">Sales</a></li>
+                    <li><a href="/ShoppingCard/Index" style="color:white"><label style="color:red">Shopping Card </label></a></li>
+                }
+
+                <li><a href="/Account/logOut" style="color:white">Log Out</a></li>
+            </ul>
+            @*<ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>*@
+        </div>
+    </nav>
+
+    <div class="container">
+
+        @RenderBody()
+
+
+        
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@using stockTrackingSystem.Models
+@model List<Products>
+    @{
+        ViewBag.Title = "CriticalStock";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<table class="table table-bordered">
+    <tr>
+        <th>Product Information</th>
+        <th>Stock</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.Stock<50)
+        {
+            <tr style="background-color:red">
+                <td>@item.Name</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+
+        else if (item.Stock>50)
+        {
+            <tr style="background-color:yellow">
+                <td>@item.Name</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+    }
+</table>
+

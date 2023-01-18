@@ -1,0 +1,37 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<stockTrackingSystem.Models.Sales>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sales List</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Product Name</th>
+        <th>Piece</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Date</th>
+    </tr>
+    <tbody>
+        @foreach(var item in Model)
+         {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Products.Name</td>
+                <td>@item.Piece</td>
+                <td>@item.Price</td>
+                <td><img src="~/Content/Images/@item.Products.Image" width="90" height="90"/></td>
+                <td>@Convert.ToDateTime(item.Date).ToString("MM/dd/yyyy")</td>
+
+            </tr>
+
+         }
+    </tbody>
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new {page}),PagedListRenderOptions.Classic)
+
